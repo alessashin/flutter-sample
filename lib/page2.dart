@@ -237,32 +237,129 @@ class SecondPage extends StatefulWidget {
   State<SecondPage> createState() => _SecondPageState();
 }
 
+
+
 class _SecondPageState extends State<SecondPage> {
 
-  ImageStack(imageFile, textValue) => Stack(
-    alignment: Alignment.bottomLeft,
-
+  starRenderer(int starRating) => Row (
     children: [
+      for(int x = 1 ; x <=starRating; x++ )
+        Icon(Icons.star, color: Colors.yellow,),
 
-      Image.asset(
-        imageFile,
-        height: 150,
-        width: 100,
+      for (int x=1; x <= 5-starRating; x++)
+        Icon(Icons.star)
+    ],
+  );
 
-        //suggested by gemini coz why have space something
-        //height: 100,
-        //width: 150,
-        //fit: BoxFit.cover,
-      ),
 
-      Text(textValue,
-        style: TextStyle(
+
+
+
+  ImageStack(imageFile, textValue) =>
+      Stack(
+        alignment: Alignment.bottomLeft,
+
+        children: [
+
+          Image.asset(
+            imageFile,
+            height: 150,
+            width: 100,
+          ),
+
+          //suggested by gemini coz why have space something
+          //height: 100,
+          //width: 150,
+          //fit: BoxFit.cover,
+
+          Text(textValue,
+            style: TextStyle(
                 color: Colors.white
+            ),
+          ),
+        ], //children close
+
+      );
+
+
+  //post stack version
+
+  PostDaw(profile,
+      name,
+      caption,
+      postImg,
+      starRating,) =>
+      // column kay aron pasunod and dili stack kay column ngani
+  Column(crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SizedBox(
+        height: 20,),
+
+
+      Row(
+        children: [
+          Image.asset(
+            profile,
+            width: 55,
+            height: 55,
+          ),
+
+          Text(
+            name,
+            style: TextStyle(
+              // patakaaaa  backgroundColor: Colors.pinkAccent,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.pink,
+            ),
+          ),
+
+
+        ],
+      ),
+      Text(
+        caption,
+        style: TextStyle(
+          fontSize: 15,
         ),
       ),
+
+
+      SizedBox(height: 10,),
+
+
+      Image.asset(
+        postImg,
+        //width: 350,
+        width: double.infinity, //if matic full coverage bes
+        height: 200,
+        fit: BoxFit.cover,
+      ),
+
+      SizedBox(height: 15,),
+
+
+//for stars rating
+      Row(
+          children: [
+            //Icon(Icons.star),
+            starRenderer(starRating),
+            Text(starRating.toString()),
+          ]
+      )
+
+
     ],
 
+
   );
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -277,216 +374,250 @@ class _SecondPageState extends State<SecondPage> {
       ),
 
       body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
 
-              SizedBox(height: 10,
-              ),
+              children: [
 
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ImageStack("assets/images/pic8.jpg", "Maclab"),
-                    ImageStack("assets/images/pic4.jpg", "Outside UM"),
-                    ImageStack("assets/images/pic9.jpg", "Flag Pole"),
-                  ],
+                SizedBox(height: 10,
+                ),
+
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      ImageStack("assets/images/pic8.jpg",
+                          "Maclab"),
+                      ImageStack("assets/images/pic4.jpg",
+                          "Outside UM"),
+                      ImageStack("assets/images/pic9.jpg",
+                          "Flag Pole"),
+                    ],
+                  ),
 
                 ),
-              ),
 
-              SizedBox(height: 20,),
 
-              // first line nga row
-              // how kaya // borderRadius: BorderRadius.circular(50),
-              Row(
-                children: [
-                  SizedBox(width: 10,),
-                  Image.asset(
-                    'assets/images/pic1.jpg',
+                PostDaw (
+                  'assets/images/pic1.jpg',
+                  'Dakme Tungtungsahur',
+                  'A Day in my Life as a Pooper',
+                  'assets/images/pic11.jpg',
+                  2,
+                ),
+                PostDaw (
+                  'assets/images/pic7.jpg',
+                  'Darwina Pratapim',
+                  'Ooopsss Ooppss OoooPppppSssss',
+                  'assets/images/pic12.jpg',
+                  3,
+                ),
+                PostDaw (
+                  'assets/images/pic6.jpg',
+                  'Yohoo Dito ang Tingin',
+                  'Revive me Jett',
+                  'assets/images/pic13.jpg',
+                  5
+                ),
 
-                    width: 55,
-                    height: 55,
-                  ),
-
-                  //CircleAvatar(
-                  //       radius: 27.5,
-                  //       backgroundImage: AssetImage('assets/images/pic1.jpg'),
-                  //     ),
-
-                  //before the big screen
-                  SizedBox(width: 10,),
-
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Dakme Tungtungsahur',
-                        style: TextStyle(
-                          // patakaaaa  backgroundColor: Colors.pinkAccent,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.pink,
-                        ),
-                      ),
-                      Text('A Day in my Life as a Pooper'
-                      ),
-                    ], //children
-                  ),
-                ],
-              ),
-
-              //wide screen na
-              SizedBox(height: 20,),
-              Image.asset(
-                'assets/images/pic11.jpg',
-                width: 350,
-                //width: double.infinity,  if matic full coverage bes
-                height: 200,
-                fit: BoxFit.cover,
-              ),
+                SizedBox(height: 20,),
 
 
 
-              SizedBox(height: 20,),
+
+                // // first line nga row
+                // // how kaya // borderRadius: BorderRadius.circular(50),
+                // Row(
+                //   children: [
+                //     SizedBox(width: 10,),
+                //     Image.asset(
+                //       'assets/images/pic1.jpg',
+                //
+                //       width: 55,
+                //       height: 55,
+                //     ),
+                //
+                //     //ana si ai ganioto daw
+                //     //CircleAvatar(
+                //     //       radius: 27.5,
+                //     //       backgroundImage: AssetImage('assets/images/pic1.jpg'),
+                //     //     ),
+                //
+                //     //before the big screen
+                //     SizedBox(width: 10,),
+                //
+                //     Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Dakme Tungtungsahur',
+                //           style: TextStyle(
+                //             // patakaaaa  backgroundColor: Colors.pinkAccent,
+                //             fontSize: 20,
+                //             fontWeight: FontWeight.bold,
+                //             color: Colors.pink,
+                //           ),
+                //         ),
+                //         Text('A Day in my Life as a Pooper'
+                //         ),
+                //       ], //children
+                //     ),
+                //   ],
+                // ),
+                //
+                // //wide screen na
+                // SizedBox(height: 20,),
+                // Image.asset(
+                //   'assets/images/pic11.jpg',
+                //   width: 350,
+                //   //width: double.infinity,  if matic full coverage bes
+                //   height: 200,
+                //   fit: BoxFit.cover,
+                // ),
+                //
+                //
+                //
+                // SizedBox(height: 20,),
+                //
+                //
+                // //2nd post
+                // Row(
+                //   children: [
+                //     SizedBox(width: 10,),
+                //     Image.asset(
+                //       'assets/images/pic7.jpg',
+                //
+                //       width: 55,
+                //       height: 55,
+                //     ),
+                //
+                //     //before the big screen
+                //     SizedBox(width: 10,),
+                //
+                //     Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Darwina Pratapim',
+                //           style: TextStyle(
+                //             fontSize: 20,
+                //             fontWeight: FontWeight.bold,
+                //             color: Colors.pink,
+                //           ),
+                //         ),
+                //         Text('Ooopsss Ooppss OoooPppppSssss'
+                //         ),
+                //       ], //children
+                //     ),
+                //   ],
+                // ),
+                //
+                // //wide screen na
+                // SizedBox(height: 10,),
+                // Image.asset(
+                //   'assets/images/pic12.jpg',
+                //   width: double.infinity,
+                //   height: 200,
+                //   fit: BoxFit.cover,
+                // ),
+                //
+                //
+                // SizedBox(height: 20,),
+                //
+                //
+                // //3rd post
+                // Row(
+                //   children: [
+                //     SizedBox(width: 10,),
+                //     Image.asset(
+                //       'assets/images/pic6.jpg',
+                //
+                //       width: 55,
+                //       height: 55,
+                //     ),
+                //
+                //     //before the big screen
+                //     SizedBox(width: 10,),
+                //
+                //     Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Yohoo Dito ang Tingin',
+                //           style: TextStyle(
+                //             fontSize: 20,
+                //             fontWeight: FontWeight.bold,
+                //             color: Colors.pink,
+                //           ),
+                //         ),
+                //         Text('Revive me Jett'
+                //         ),
+                //       ], //children
+                //     ),
+                //   ],
+                // ),
+                //
+                // //wide screen na
+                // SizedBox(height: 10,),
+                // Image.asset(
+                //   'assets/images/pic13.jpg',
+                //   width: double.infinity,
+                //   height: 200,
+                //   fit: BoxFit.cover,
+                // ),
 
 
-              //2nd post
-              Row(
-                children: [
-                  SizedBox(width: 10,),
-                  Image.asset(
-                    'assets/images/pic7.jpg',
-
-                    width: 55,
-                    height: 55,
-                  ),
-
-                  //before the big screen
-                  SizedBox(width: 10,),
-
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Darwina Pratapim',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.pink,
-                        ),
-                      ),
-                      Text('Ooopsss Ooppss OoooPppppSssss'
-                      ),
-                    ], //children
-                  ),
-                ],
-              ),
-
-              //wide screen na
-              SizedBox(height: 10,),
-              Image.asset(
-                'assets/images/pic12.jpg',
-                width: double.infinity,
-                height: 200,
-                fit: BoxFit.cover,
-              ),
-
-
-              SizedBox(height: 20,),
-
-
-              //3rd post
-              Row(
-                children: [
-                  SizedBox(width: 10,),
-                  Image.asset(
-                    'assets/images/pic6.jpg',
-
-                    width: 55,
-                    height: 55,
-                  ),
-
-                  //before the big screen
-                  SizedBox(width: 10,),
-
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Yohoo Dito ang Tingin',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.pink,
-                        ),
-                      ),
-                      Text('Revive me Jett'
-                      ),
-                    ], //children
-                  ),
-                ],
-              ),
-
-              //wide screen na
-              SizedBox(height: 10,),
-              Image.asset(
-                'assets/images/pic13.jpg',
-                width: double.infinity,
-                height: 200,
-                fit: BoxFit.cover,
-              ),
-
-
-              SizedBox(height: 20,),
+                SizedBox(height: 20,),
 
 
 
-              Image.asset(
-                'assets/images/cat.jpg',
-                height: 200,
-                width: 200,
-              ),
-              Image.asset(
-                'assets/images/pic2.jpg',
-                height: 200,
-                width: 200,
-              ),
-              Image.asset(
-                'assets/images/pic3.jpg',
-                height: 200,
-                width: 200,
-              ),
+                Image.asset(
+                  'assets/images/cat.jpg',
+                  height: 200,
+                  width: 200,
+                ),
+                Image.asset(
+                  'assets/images/pic2.jpg',
+                  height: 200,
+                  width: 200,
+                ),
+                Image.asset(
+                  'assets/images/pic3.jpg',
+                  height: 200,
+                  width: 200,
+                ),
 
-              Image.asset(
-                'assets/images/pic3.jpg',
-                height: 200,
-                width: 200,
-              ),
-              Image.asset(
-                'assets/images/pic3.jpg',
-                height: 200,
-                width: 200,
-              ),
-
-
-              //will bring u to page 3 angas
-              ElevatedButton(onPressed: (){
-                Navigator.push(context,
-                    MaterialPageRoute(
-                        builder: (context)=> ThirdPage(
-
-                        )
-                    )
-                );
-
-              }, child: Text("Page 3"
-              ),
-              ),
+                Image.asset(
+                  'assets/images/pic3.jpg',
+                  height: 200,
+                  width: 200,
+                ),
+                Image.asset(
+                  'assets/images/pic3.jpg',
+                  height: 200,
+                  width: 200,
+                ),
 
 
-            ],
+                //will bring u to page 3 angas
+                ElevatedButton(onPressed: (){
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context)=> ThirdPage(
+
+                          )
+                      )
+                  );
+
+                }, child: Text("Page 3"
+                ),
+                ),
+
+
+              ],
+            ),
           )
       ),
     );
