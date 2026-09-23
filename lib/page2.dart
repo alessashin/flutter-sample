@@ -241,6 +241,12 @@ class SecondPage extends StatefulWidget {
 
 class _SecondPageState extends State<SecondPage> {
 
+  var PostDaw = [{'profile':'assets/images/pic1.jpg' , 'name':'Dakme Tungtungsahur'  , 'caption':'A Day in my Life as a Pooper'  , 'postImg':'assets/images/pic11.jpg'  , 'starRating': 2 },
+                {'profile':'assets/images/pic7.jpg' , 'name':'Darwina Pratapim'  , 'caption':'Ooopsss Ooppss OoooPppppSssss'  , 'postImg':'assets/images/pic12.jpg'  , 'starRating': 3 },
+                {'profile':'assets/images/pic6.jpg' , 'name':'Yohoo Dito ang Tingin'  , 'caption':'Revive me Jett'  , 'postImg':'assets/images/pic13.jpg'  , 'starRating': 5 }];
+
+
+
   starRenderer(int starRating) => Row (
     children: [
       for(int x = 1 ; x <=starRating; x++ )
@@ -290,6 +296,8 @@ class _SecondPageState extends State<SecondPage> {
       postImg,
       starRating,) =>
       // column kay aron pasunod and dili stack kay column ngani
+
+
   Column(crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       SizedBox(
@@ -358,9 +366,6 @@ class _SecondPageState extends State<SecondPage> {
 
 
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -400,27 +405,27 @@ class _SecondPageState extends State<SecondPage> {
                 ),
 
 
-                PostDaw (
-                  'assets/images/pic1.jpg',
-                  'Dakme Tungtungsahur',
-                  'A Day in my Life as a Pooper',
-                  'assets/images/pic11.jpg',
-                  2,
-                ),
-                PostDaw (
-                  'assets/images/pic7.jpg',
-                  'Darwina Pratapim',
-                  'Ooopsss Ooppss OoooPppppSssss',
-                  'assets/images/pic12.jpg',
-                  3,
-                ),
-                PostDaw (
-                  'assets/images/pic6.jpg',
-                  'Yohoo Dito ang Tingin',
-                  'Revive me Jett',
-                  'assets/images/pic13.jpg',
-                  5
-                ),
+                // PostDaw (
+                //   'assets/images/pic1.jpg',
+                //   'Dakme Tungtungsahur',
+                //   'A Day in my Life as a Pooper',
+                //   'assets/images/pic11.jpg',
+                //   2,
+                // ),
+                // PostDaw (
+                //   'assets/images/pic7.jpg',
+                //   'Darwina Pratapim',
+                //   'Ooopsss Ooppss OoooPppppSssss',
+                //   'assets/images/pic12.jpg',
+                //   3,
+                // ),
+                // PostDaw (
+                //   'assets/images/pic6.jpg',
+                //   'Yohoo Dito ang Tingin',
+                //   'Revive me Jett',
+                //   'assets/images/pic13.jpg',
+                //   5
+                // ),
 
                 SizedBox(height: 20,),
 
